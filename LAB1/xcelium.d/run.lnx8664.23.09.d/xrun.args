@@ -1,0 +1,30 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
+-define
+no_implication
+-rnm_package
+-nowarn
+COVFHT
+-nowarn
+COVCGN
+-nowarn
+COVUTA
+-nowarn
+ICFCLD
+-nowarn
+WSEM2009
+-input
+/home/couf1001/Documents/github/S8APP1LABCADENCE/verif/scripts/misc_commands.tcl
+-gui
+-input
+/home/couf1001/Documents/github/S8APP1LABCADENCE/verif/scripts/waves.tcl
+-ACCESS
++rwc
+-seed
+random
+-sv
+dut.v
+test_dut.sv
+dut_property.sv

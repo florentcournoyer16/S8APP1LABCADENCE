@@ -1,0 +1,100 @@
+xrun(64): 23.09-s006: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
+TOOL:	xrun(64)	23.09-s006: Started on Sep 04, 2024 at 11:31:07 EDT
+xrun
+	-define no_implication
+	-rnm_package
+	-nowarn COVFHT
+	-nowarn COVCGN
+	-nowarn COVUTA
+	-nowarn ICFCLD
+	-nowarn WSEM2009
+	-input /home/couf1001/Documents/github/S8APP1LABCADENCE/verif/scripts/misc_commands.tcl
+	-gui
+	-input /home/couf1001/Documents/github/S8APP1LABCADENCE/verif/scripts/waves.tcl
+	-ACCESS +rwc
+	-seed random
+	-sv
+	dut.v
+	test_dut.sv
+	dut_property.sv
+file: dut.v
+	module worklib.dut:v
+		errors: 0, warnings: 0
+file: test_dut.sv
+	module worklib.test_dut:sv
+		errors: 0, warnings: 0
+file: dut_property.sv
+	module worklib.dut_property:sv
+		errors: 0, warnings: 0
+		Caching library 'worklib' ....... Done
+	Elaborating the design hierarchy:
+	Top level design units:
+		test_dut
+		dut_property
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+		worklib.dut_property:sv <0x43dcb761>
+			streams:   5, words:  4156
+		worklib.dut:v <0x2c07c66e>
+			streams:   2, words:  3012
+		worklib.test_dut:sv <0x29815144>
+			streams:   5, words:  7624
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		             Instances  Unique
+		Modules:             3       3
+		Registers:           9       9
+		Scalar wires:        6       -
+		Named events:        2       2
+		Always blocks:       8       8
+		Initial blocks:      5       5
+		Pseudo assignments:  2       -
+		Assertions:          1       1
+		Process Clocks:      1       1
+	Writing initial simulation snapshot: worklib.test_dut:sv
+xmsim: *W,NOMTDGUI: Multi-Threaded Dumping is disabled for interactive debug mode.
+SVSEED set randomly from command line: -376587349
+
+-------------------------------------
+Relinquished control to SimVision...
+xcelium> 
+xcelium> source /mnt/opt/cmc/tools/cadence/XCELIUMMAIN23.09.006_lnx86/tools/xcelium/files/xmsimrc
+xcelium> ########################################################################
+xcelium> ## Author  :    Marc-Andre Tetrault
+xcelium> ## Project :    Verification Primer
+xcelium> ##
+xcelium> ## Universite de Sherbrooke
+xcelium> ########################################################################
+xcelium> #
+xcelium> # Purpose   :   Misc Commands sent to simulator
+xcelium> ########################################################################
+xcelium> 
+xcelium> 
+xcelium> # get the seed. Reference: "SystemVerilog Reference" from Cadence Help tool (cdnshelp)
+xcelium> set RetrievedSeed [set svseed]
+-376587349
+xcelium> puts "The SystemVerilog seed is $RetrievedSeed"
+The SystemVerilog seed is -376587349
+xcelium> 
+xcelium> # set severity_pack_assert_off {warning}
+xcelium> # set pack_assert_off {  numeric_std }
+xcelium> 
+xcelium> # set assert_stop_level never
+xcelium> ########################################################################
+xcelium> ## Author  :    Marc-Andre Tetrault
+xcelium> ## Project :    Verification Primer
+xcelium> ##
+xcelium> ## Universite de Sherbrooke
+xcelium> ########################################################################
+xcelium> 
+xcelium> # save all waveforms by default. Consult the Simvision user guide
+xcelium> # for details on the commands and how to change recording rules
+xcelium> # if disk space is an issue.
+xcelium> 
+xcelium> database -open waves -into waves.shm -default
+Created default SHM database waves
+xcelium> 
+xcelium> probe -create $::env(LAB_TEST_DUT_NAME) -all -depth all -database waves
+Created probe 1
+xcelium> TOOL:	xrun(64)	23.09-s006: Exiting on Sep 04, 2024 at 11:32:00 EDT  (total: 00:00:53)
