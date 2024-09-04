@@ -1,3 +1,6 @@
 1725208928 /home/couf1001/Documents/github/S8APP1LABCADENCE/LAB1/dut.v
 1725208928 /home/couf1001/Documents/github/S8APP1LABCADENCE/LAB1/test_dut.sv
+1725476843 /home/norc2802/Bureau/S8/5_LAB3_2/S8APP1LABCADENCE/LAB1/dut.v
 1725208928 /home/couf1001/Documents/github/S8APP1LABCADENCE/LAB1/dut_property.sv
+1725476629 /home/norc2802/Bureau/S8/5_LAB3_2/S8APP1LABCADENCE/LAB1/dut_property.sv
+1725477008 /home/norc2802/Bureau/S8/5_LAB3_2/S8APP1LABCADENCE/LAB1/test_dut.sv

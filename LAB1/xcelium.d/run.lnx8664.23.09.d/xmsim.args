@@ -13,10 +13,9 @@ ICFCLD
 -NOWARN
 WSEM2009
 -INPUT
-/home/couf1001/Documents/github/S8APP1LABCADENCE/verif/scripts/misc_commands.tcl
--gui
--INPUT
-/home/couf1001/Documents/github/S8APP1LABCADENCE/verif/scripts/waves.tcl
+/home/norc2802/Bureau/S8/5_LAB3_2/S8APP1LABCADENCE/verif/scripts/misc_commands.tcl
+-RUN
+-EXIT
 -MESSAGES
 -svseed
 random
@@ -25,7 +24,7 @@ random
 +EMGRLOG
 xrun.log
 -XLSTIME
-1725463867
+1725477011
 -XLKEEP
 -XLMODE
 ./xcelium.d/run.lnx8664.23.09.d

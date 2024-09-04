@@ -3,7 +3,7 @@
 // Do not modify this file
 //
 -define
-no_implication
+implication
 -rnm_package
 -nowarn
 COVFHT
@@ -16,12 +16,9 @@ ICFCLD
 -nowarn
 WSEM2009
 -input
-/home/couf1001/Documents/github/S8APP1LABCADENCE/verif/scripts/misc_commands.tcl
--gui
--input
-/home/couf1001/Documents/github/S8APP1LABCADENCE/verif/scripts/waves.tcl
--ACCESS
-+rwc
+/home/norc2802/Bureau/S8/5_LAB3_2/S8APP1LABCADENCE/verif/scripts/misc_commands.tcl
+-run
+-exit
 -seed
 random
 -sv

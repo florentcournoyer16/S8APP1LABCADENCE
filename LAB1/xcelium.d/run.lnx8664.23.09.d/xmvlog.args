@@ -6,7 +6,7 @@
 ./xcelium.d/run.lnx8664.23.09.d
 -RUNMODE
 -DEFINE
-no_implication
+implication
 -NOWARN
 COVFHT
 -NOWARN

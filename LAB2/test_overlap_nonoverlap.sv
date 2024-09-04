@@ -25,7 +25,7 @@ endproperty
 
 `elsif nonoverlap
 property pr1;
-  @(posedge clk) cstart |=> sr1;
+  @(posedge clk) $rose(cstart) |=> sr1;
 endproperty 
 
 //Note that if a simulator supports filter on vacuous pass for a 'cover'
@@ -37,7 +37,7 @@ property pr1_for_cover;
 endproperty 
 `endif
 
-reqGnt: assert property (pr1) else $display($stime,,,"\t\t %m FAIL"); 
+reqGnt: assert property (pr1) $display($stime,,,"\t\t %m PASS"); else $display($stime,,,"\t\t %m FAIL"); 
 creqGnt: cover property (pr1_for_cover) $display($stime,,,"\t\t %m PASS"); 
 
 initial

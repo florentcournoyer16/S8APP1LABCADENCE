@@ -5,7 +5,7 @@ wire sys_gnt;
 /* Instantiate 'dut' */
 
 dut dut1 (
-        	.clk(sys_clk), 
+    .clk(sys_clk), 
 		.req(sys_req), 
 		.gnt(sys_gnt)
 	);
@@ -16,6 +16,8 @@ dut dut1 (
 //
 // Add your code to bind 'dut' with 'dut_property' here.
 //
+
+bind dut1 dut_property duy_test1(.pclk(clk), .preq(req), .pgnt(gnt));
 
 // You need to know the names of the ports in the design and the property module
 // to be able to bind them. So, here they are: 
@@ -49,8 +51,8 @@ initial
 begin
                       sys_req = 1'b0;
   @(posedge sys_clk) sys_req = 1'b1; //30
-  @(posedge sys_clk) sys_req = 1'b0; //50
-  @(posedge sys_clk) sys_req = 1'b0; //70
+  @(posedge sys_clk) sys_req = 1'b1; //50
+  @(posedge sys_clk) sys_req = 1'b1; //70
   @(posedge sys_clk) sys_req = 1'b1; //90
   @(posedge sys_clk) sys_req = 1'b0; //110
   @(posedge sys_clk) sys_req = 1'b0; //130

@@ -15,21 +15,29 @@ module counter_property (
   input logic [7:0] data_out
   );
 
+default disable iff !rst_;
 //------------------------------------
 
 //        CHECK # 1. Check that when 'rst_' is asserted (==0) that data_out == 8'b0
 
 //------------------------------------
 `ifdef check1
-property counter_reset;
-  @(posedge clk) data_in |=> data_out; //DUMMY - REMOVE this line and code correct assertion 
+sequence data_rst_se;
+	##1 data_out == 8'b0;
+endsequence
+
+property data_rst_pr_a;
+	@(posedge clk) !rst_ |-> data_rst_se;
 endproperty
 
-counter_reset_check: assert property(counter_reset) 
-  else $display($stime,,,"\t\tCOUNTER RESET CHECK FAIL:: rst_=%b data_out=%0d \n",
-				rst_,data_out);
-`endif
+property data_rst_pr_c;
+	@(posedge clk) !rst_ ##0 data_rst_se;
+endproperty
 
+data_rst_a : assert property(data_rst_pr_a) $display($stime,,,"\t\t %m PASS"); 
+	else $display($stime,,,"\t\tCOUNTER RESET CHECK FAIL:: rst_=%b data_out=%0d \n", rst_,data_out);
+data_rst_c : cover property(data_rst_pr_c) $display($stime,,,"\t\t %m PASS");
+`endif
 //------------------------------------
 //Check for count to hold if count_enb is disabled 
 
@@ -39,11 +47,16 @@ counter_reset_check: assert property(counter_reset)
 
 //------------------------------------
 `ifdef check2
-property counter_hold;
-  @(posedge clk) data_in |=> data_out; //DUMMY - REMOVE  this line and code correct assertion
+
+sequence counter_hold_se;
+	$stable(data_out);
+endsequence
+
+property counter_hold_pr;
+	@(posedge clk) ld_cnt_ && !count_enb |-> ##1 counter_hold_se;
 endproperty
 
-counter_hold_check: assert property(counter_hold) 
+counter_hold_a: assert property(counter_hold_pr) $display($stime,,,"\t\t %m PASS"); 
   else $display($stime,,,"\t\tCOUNTER HOLD CHECK FAIL:: counter HOLD \n");
 `endif
 
@@ -57,12 +70,29 @@ counter_hold_check: assert property(counter_hold)
 //------------------------------------
 
 `ifdef check3
-property counter_count;
-  @(posedge clk) data_in |=> data_out; //DUMMY - REMOVE  this line and code correct assertion
+
+sequence counter_count_down_se;
+	$past(data_out)-1 == data_out;
+endsequence
+
+sequence counter_count_up_se;
+	$past(data_out)+1 == data_out;
+endsequence
+
+property counter_count_down_pr;
+	@(posedge clk) !updn_cnt && ld_cnt_ && count_enb |=> counter_count_down_se; //DUMMY - REMOVE  this line and code correct assertion
 endproperty
 
-counter_count_check: assert property(counter_count) 
+property counter_count_up_pr;
+	@(posedge clk) updn_cnt && ld_cnt_ && count_enb |=> counter_count_up_se; //DUMMY - REMOVE  this line and code correct assertion
+endproperty
+
+
+counter_count_down_check: assert property(counter_count_down_pr) $display($stime,,,"\t\t %m PASS"); 
   else $display($stime,,,"\t\tCOUNTER COUNT CHECK FAIL:: UPDOWN COUNT using $past \n"); 
+counter_count_up_check: assert property(counter_count_up_pr) $display($stime,,,"\t\t %m PASS"); 
+  else $display($stime,,,"\t\tCOUNTER COUNT CHECK FAIL:: UPDOWN COUNT using $past \n");
+
 `endif
 
 endmodule

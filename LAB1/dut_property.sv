@@ -10,7 +10,7 @@ preqGnt: assert property (pr1) $display($stime,,,"\t\t %m PASS");
 
 `elsif implication
 property pr1;
-  @(posedge pclk) preq |-> ##2 pgnt;
+  @(posedge pclk) preq |-> ##1 preq ##1 pgnt;
 endproperty 
 
 preqGnt: assert property (pr1) $display($stime,,,"\t\t %m PASS"); 

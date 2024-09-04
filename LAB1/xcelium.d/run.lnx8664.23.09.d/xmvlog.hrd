@@ -3,5 +3,5 @@
 // Do not modify this file
 //
 -DEFINE
-no_implication
+implication
 -sv

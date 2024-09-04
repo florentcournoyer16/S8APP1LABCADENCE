@@ -15,6 +15,7 @@ initial
 begin
 	@(posedge req);
   	  @(negedge clk); gnt=1'b0;
+	  @(negedge clk); gnt=1'b0;
 	  @(negedge clk); gnt=1'b1;
 
 	@(posedge req);
