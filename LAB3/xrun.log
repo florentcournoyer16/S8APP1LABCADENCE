@@ -1,5 +1,5 @@
 xrun(64): 23.09-s006: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
-TOOL:	xrun(64)	23.09-s006: Started on Sep 19, 2024 at 16:17:48 EDT
+TOOL:	xrun(64)	23.09-s006: Started on Sep 19, 2024 at 17:04:51 EDT
 irun
 	-define nobugs
 	-rnm_package
@@ -23,8 +23,8 @@ irun
 	fifo_property.sv
 xrun: *W,NCEXDEP: Executable (irun) is deprecated. Use (xrun) instead.
 Recompiling... reason: file './fifo_property.sv' is newer than expected.
-	expected: Thu Sep 19 16:12:07 2024
-	actual:   Thu Sep 19 16:17:46 2024
+	expected: Thu Sep 19 17:03:06 2024
+	actual:   Thu Sep 19 17:04:49 2024
 file: fifo_property.sv
 	module worklib.fifo_property:sv
 		errors: 0, warnings: 0
@@ -42,8 +42,8 @@ file: fifo_property.sv
 	Enabling instrumentation for coverage types: block expression FSM toggle functional
 xmelab: *W,COVNSO: /home/couf1001/Documents/github/S8APP1LABCADENCE/verif/scripts/coverage.tcl:25 Scoring of "event" is not supported for the set_coverable_operators -all command in the current release. However, it will be supported in a future release. To score "event" in the current release, use "-event_or" with the set_coverable_operators command, along with appropriate options of the set_coverable_statements command.
 	Generating native compiled code:
-		worklib.fifo_property:sv <0x0a8166e0>
-			streams:  58, words: 46912
+		worklib.fifo_property:sv <0x104650d2>
+			streams:  52, words: 44672
 logic [(fifo_width-1):0] fifomem [0:(fifo_depth-1)];
                                |
 xmelab: *W,COVMDD (./fifo.v,15|31): Toggle coverage for bit, logic, reg, wire, enum and struct multi-dimensional static arrays and vectors is not supported by default. To enable toggle coverage for enum multi-dimensional static arrays specify 'set_toggle_scoring -sv_enum enable_mda' and for other multi-dimensional static arrays, specify 'set_toggle_scoring -sv_mda [<max_bit_base2_exponent>] [-sv_mda_of_struct]' ccf command in the coverage configuration file.
@@ -51,21 +51,22 @@ xmelab: *W,COVMDD (./fifo.v,15|31): Toggle coverage for bit, logic, reg, wire, e
 	Performing constant object marking (COM) analysis.
 	Loading native compiled code:     .................... Done
 	Design hierarchy summary:
-		               Instances  Unique
-		Modules:               3       3
-		Registers:           132     132
-		Scalar wires:          8       -
-		Vectored wires:        4       -
-		Named events:         12      12
-		Always blocks:        83      83
-		Initial blocks:       25      25
-		Cont. assignments:     1       1
-		Pseudo assignments:    7       -
-		Assertions:           12      12
-		Process Clocks:       12       1
+		                 Instances  Unique
+		Modules:                 3       3
+		Registers:             124     124
+		Scalar wires:            8       -
+		Vectored wires:          4       -
+		Named events:           10      10
+		Always blocks:          75      75
+		Initial blocks:         24      24
+		Cont. assignments:       1       1
+		Pseudo assignments:      8       -
+		Assertions:             10      10
+		Covergroup Instances:    0       1
+		Process Clocks:         10       1
 	Writing initial simulation snapshot: worklib.test_fifo:sv
 Loading snapshot worklib.test_fifo:sv .................... Done
-SVSEED set randomly from command line: -1980536316
+SVSEED set randomly from command line: -353375500
 xcelium> source /mnt/opt/cmc/tools/cadence/XCELIUMMAIN23.09.006_lnx86/tools/xcelium/files/xmsimrc
 xcelium> ########################################################################
 xcelium> ## Author  :    Marc-Andre Tetrault
@@ -80,9 +81,9 @@ xcelium>
 xcelium> 
 xcelium> # get the seed. Reference: "SystemVerilog Reference" from Cadence Help tool (cdnshelp)
 xcelium> set RetrievedSeed [set svseed]
--1980536316
+-353375500
 xcelium> puts "The SystemVerilog seed is $RetrievedSeed"
-The SystemVerilog seed is -1980536316
+The SystemVerilog seed is -353375500
 xcelium> 
 xcelium> # set severity_pack_assert_off {warning}
 xcelium> # set pack_assert_off {  numeric_std }
@@ -95,7 +96,6 @@ xcelium> run
 
         25  rst_=0 clk=1 fifo_write=0 fifo_read=0 fifo_full=0 fifo_empty=1 wr_ptr=0 rd_ptr=0 cnt=0
         35  rst_=1 clk=1 fifo_write=0 fifo_read=0 fifo_full=0 fifo_empty=1 wr_ptr=0 rd_ptr=0 cnt=0
-xmsim: *E,ASRTST (./fifo_property.sv,126): (time 35 NS) Assertion test_fifo.fi1.fi1bind.ASS_read_on_empty_fifo has failed 
         35		 PASS::fifo_empty_when_cnt_0 condition
 
         45  rst_=1 clk=1 fifo_write=1 fifo_read=0 fifo_full=0 fifo_empty=1 wr_ptr=0 rd_ptr=0 cnt=0
@@ -107,10 +107,7 @@ xmsim: *E,ASRTST (./fifo_property.sv,126): (time 35 NS) Assertion test_fifo.fi1.
        105  rst_=1 clk=1 fifo_write=1 fifo_read=0 fifo_full=0 fifo_empty=0 wr_ptr=6 rd_ptr=0 cnt=6
        115  rst_=1 clk=1 fifo_write=1 fifo_read=0 fifo_full=0 fifo_empty=0 wr_ptr=7 rd_ptr=0 cnt=7
        125  rst_=1 clk=1 fifo_write=1 fifo_read=0 fifo_full=1 fifo_empty=0 wr_ptr=8 rd_ptr=0 cnt=8
-xmsim: *E,ASRTST (./fifo_property.sv,116): (time 125 NS) Assertion test_fifo.fi1.fi1bind.ass_write_on_full_fifo has failed 
        125		 PASS::fifo_full_when_cnt_8 condition
-
-       125		 WARNING::write_on_full_fifo
 
        135  rst_=1 clk=1 fifo_write=0 fifo_read=0 fifo_full=1 fifo_empty=0 wr_ptr=8 rd_ptr=0 cnt=8
        135		 PASS::fifo_full_write_stable_wrptr condition
@@ -124,19 +121,16 @@ xmsim: *E,ASRTST (./fifo_property.sv,116): (time 125 NS) Assertion test_fifo.fi1
        205  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=0 wr_ptr=8 rd_ptr=6 cnt=2
        215  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=0 wr_ptr=8 rd_ptr=7 cnt=1
        225  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=1 wr_ptr=8 rd_ptr=8 cnt=0
-       225		 WARNING::read_on_empty_fifo condition
-
        235  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=1 wr_ptr=8 rd_ptr=8 cnt=0
        235		 PASS::fifo_empty_read_stable_rdptr condition
 
-       235		 WARNING::read_on_empty_fifo condition
-
        245  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=1 wr_ptr=8 rd_ptr=8 cnt=0
-Memory Usage - Current physical: 48.1M, Current virtual: 355.5M
-CPU Usage - 0.0s system + 0.0s user = 0.1s total (12.6% cpu)
+Memory Usage - Current physical: 55.3M, Current virtual: 356.1M
+CPU Usage - 0.0s system + 0.0s user = 0.1s total (18.8% cpu)
 Simulation complete via $finish(2) at time 245 NS + 0
 ./test_fifo.sv:24   @(posedge clk); $finish(2);
 xcelium> exit
+xmsim: *W,CGDEFN: Default name "test_fifo.fi1.fi1bind.covg_fifo_inst" will be generated for covergroup instance "covg_fifo_inst" as the name of the covergroup instance is not specified explicitly: ./fifo_property.sv, 184.
 
 coverage setup:
   workdir  :  ./cov_work
@@ -145,6 +139,6 @@ coverage setup:
   testname :  test_fifo
 
 coverage files:
-  model(design data) :  ./cov_work/scope/icc_6bfc2529_70965d14.ucm
-  data               :  ./cov_work/scope/test_fifo/icc_6bfc2529_70965d14.ucd
-TOOL:	xrun(64)	23.09-s006: Exiting on Sep 19, 2024 at 16:17:49 EDT  (total: 00:00:01)
+  model(design data) :  ./cov_work/scope/icc_6bfc2529_4b064a6d.ucm
+  data               :  ./cov_work/scope/test_fifo/icc_6bfc2529_4b064a6d.ucd
+TOOL:	xrun(64)	23.09-s006: Exiting on Sep 19, 2024 at 17:04:52 EDT  (total: 00:00:01)
