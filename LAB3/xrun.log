@@ -1,0 +1,41 @@
+xrun(64): 23.09-s006: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
+TOOL:	xrun(64)	23.09-s006: Started on Sep 19, 2024 at 12:24:43 EDT
+irun
+	-define nobugs
+	-rnm_package
+	-nowarn COVFHT
+	-nowarn COVCGN
+	-nowarn COVUTA
+	-nowarn ICFCLD
+	-nowarn WSEM2009
+	-input /home/couf1001/Documents/github/S8APP1LABCADENCE/verif/scripts/misc_commands.tcl
+	-run
+	-exit
+	-coverage all
+	-covfile /home/couf1001/Documents/github/S8APP1LABCADENCE/verif/scripts/coverage.tcl
+	-covdut fifo
+	-covoverwrite
+	-covtest test_fifo
+	-seed random
+	-sv
+	fifo.v
+	test_fifo.sv
+	fifo_property.sv
+xrun: *W,NCEXDEP: Executable (irun) is deprecated. Use (xrun) instead.
+Recompiling... reason: file './fifo_property.sv' is newer than expected.
+	expected: Thu Sep 19 11:56:08 2024
+	actual:   Thu Sep 19 12:24:41 2024
+file: fifo_property.sv
+property fifo_empty;
+                  |
+xmvlog: *E,DUPIDN (fifo_property.sv,43|18): identifier 'fifo_empty' previously declared [12.5(IEEE)].
+ass_fifo_empty: assert property (fifoempty) else $display($stime,"\t\t FAIL::fifo_empty condition\n");
+                                         |
+xmvlog: *E,UNDIDN (fifo_property.sv,51|41): 'fifoempty': undeclared identifier [12.5(IEEE)].
+cov_fifo_empty: assert property (fifoempty) $display($stime,"\t\t PASS::fifo_empty condition\n");
+                                         |
+xmvlog: *E,UNDIDN (fifo_property.sv,52|41): 'fifoempty': undeclared identifier [12.5(IEEE)].
+	module worklib.fifo_property:sv
+		errors: 3, warnings: 0
+xrun: *E,VLGERR: An error occurred during parsing.  Review the log file for errors with the code *E and fix those identified problems to proceed.  Exiting with code (status 1).
+TOOL:	xrun(64)	23.09-s006: Exiting on Sep 19, 2024 at 12:24:43 EDT  (total: 00:00:00)

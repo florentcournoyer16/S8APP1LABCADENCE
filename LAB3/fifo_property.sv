@@ -12,32 +12,50 @@ module fifo_property (
 parameter fifo_depth=8;
 parameter fifo_width=8;
                                                                                               
-//      ------------------------------------------
-//        1. Check that on reset,
-//                      rd_ptr=0; wr_ptr=0; cnt=0; fifo_empty=1 and fifo_full=0
-//      ------------------------------------------
-`ifdef check1
+// ------------------------------------------
+// 1. Check that on reset, rd_ptr=0; wr_ptr=0; cnt=0; fifo_empty=1 and fifo_full=0
+// ------------------------------------------
+
+sequence default_values;
+  `rd_ptr == 1'b0 && 
+  `wr_ptr == 1'b0 &&
+  `cnt == 8'b00000000 && 
+  fifo_empty == 1'b1 &&
+  fifo_full == 1'b0
+endsequence
+
 property check_reset;
-  @(posedge clk) !rst_ |-> `rd_ptr==0; //DUMMY... remove this line and replace it with correct check
+  @(posedge clk) !rst_ |-> ##0 default_values;
 endproperty
-check_resetP: assert property (check_reset) else $display($stime,"\t\t FAIL::check_reset\n");
-`endif
 
-//      ------------------------------------------
-//        2. Check that fifo_empty is asserted the same clock that fifo 'cnt' is 0.
-//           Disable this property 'iff (!rst)'
-//      ------------------------------------------
-`ifdef check2
-property fifoempty;
-  @(posedge clk) !rst_ |-> `rd_ptr==0; //DUMMY... remove this line and replace it with correct check
+property check_reset_;
+  @(posedge clk) !rst_ ##0 default_values;
 endproperty
-fifoemptyP: assert property (fifoempty) else $display($stime,"\t\t FAIL::fifo_empty condition\n");
-`endif
 
+ass_check_reset: assert property (check_reset) else $display($stime,"\t\t FAIL::check_reset\n");
+cov_check_reset: cover property (check_reset_) $display($stime,"\t\t PASS::check_reset\n");
+
+// ------------------------------------------
+// 2. Check that fifo_empty is asserted the same clock that fifo 'cnt' is 0. Disable this property 'iff (!rst)'
+// ------------------------------------------
+
+
+property fifo_empty_when_cnt_0;
+  @(posedge clk) disable iff(!rst_) `cnt == 8'b00000000 |-> ##0 fifo_empty;
+endproperty
+
+property fifo_empty_;
+  @(posedge clk) disable iff(!rst_) `cnt == 8'b00000000 ##0 fifo_empty;
+endproperty
+
+ass_fifo_empty: assert property (fifoempty) else $display($stime,"\t\t FAIL::fifo_empty condition\n");
+cov_fifo_empty: assert property (fifoempty) $display($stime,"\t\t PASS::fifo_empty condition\n");
+
+
+// ------------------------------------------
+// 3. Check that fifo_full is asserted any time fifo 'cnt' is greater than 7. Disable this property 'iff (!rst)'
 //      ------------------------------------------
-//        3. Check that fifo_full is asserted any time fifo 'cnt' is greater than 7.
-//           Disable this property 'iff (!rst)'
-//      ------------------------------------------
+
 `ifdef check3
 property fifofull;
   @(posedge clk) !rst_ |-> `rd_ptr==0; //DUMMY... remove this line and replace it with correct check
