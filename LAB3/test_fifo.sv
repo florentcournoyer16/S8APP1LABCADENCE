@@ -19,6 +19,8 @@ begin
   fiforeset;
   fifowrite(10);
   fiforead(9);
+  fifowrite(10);
+  fiforead(9);
   @(posedge clk); 
   @(posedge clk); 
   @(posedge clk); $finish(2);

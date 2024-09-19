@@ -175,12 +175,45 @@ covergroup covg_fifo
 		};
 	}
 
-	crs_signals_cross : cross cp_fifo_read, cp_fifo_write {
+	cp_fifo_full: coverpoint fifo_full {
+		bins not_full = {0};
+		bins is_full = {1};
+	}
+
+	cp_fifo_empty: coverpoint fifo_empty {
+		bins not_empty = {0};
+		bins is_empty = {1};
+	}
+
+	crs_signals_cross: cross cp_fifo_read, cp_fifo_write {
         illegal_bins unwanted_combination = binsof(cp_fifo_read.read_1) && binsof(cp_fifo_write.write_1);
+    }
+
+	crs_full_empty: cross cp_fifo_full, cp_fifo_empty {
+        illegal_bins unwanted_combination = binsof(cp_fifo_full.is_full) && binsof(cp_fifo_empty.is_empty);
     }
 
 endgroup
 
 covg_fifo covg_fifo_inst = new();
+
+// ------------------------------------------
+// ------------------------------------------
+
+property prop_consecutive_write_;
+	@(posedge clk) fifo_write[*3];
+endproperty
+
+cov_consecutive_writes: cover property(prop_consecutive_write_) $display($stime,,, "\t\t PASS::consecutive_writes condition\n");
+
+// ------------------------------------------
+// ------------------------------------------
+
+property prop_non_consecutive_write_;
+	@(posedge clk) $fell(rst_) |-> fifo_write[->11:18] ##1 !fifo_write;
+endproperty
+
+cov_non_consecutive_writes: assert property(prop_non_consecutive_write_) $display($stime,,, "\t\t PASS::non_consecutive_writes condition\n");
+
 
 endmodule
