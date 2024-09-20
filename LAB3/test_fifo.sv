@@ -17,9 +17,9 @@ initial
 begin
   clk=0;
   fiforeset;
-  fifowrite(10);
+  fifowrite(13);
   fiforead(9);
-  fifowrite(10);
+  fifowrite(11);
   fiforead(9);
   @(posedge clk); 
   @(posedge clk); 

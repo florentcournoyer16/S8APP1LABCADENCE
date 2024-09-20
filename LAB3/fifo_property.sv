@@ -126,6 +126,7 @@ endproperty
 // ASS_read_on_empty_fifo: assert property(prop_read_on_empty_fifo) $display($stime,"\t\t WARNING::read_on_empty_fifo condition\n");
 
 // ------------------------------------------
+// Have good coverage on all conterol signals
 // ------------------------------------------
 
 covergroup covg_fifo
@@ -210,7 +211,7 @@ cov_consecutive_writes: cover property(prop_consecutive_write_) $display($stime,
 // ------------------------------------------
 
 property prop_non_consecutive_write_;
-	@(posedge clk) $fell(rst_) |-> fifo_write[->11:18] ##1 !fifo_write;
+	@(posedge clk) $fell(rst_) |-> fifo_write[->11:18] ##2 fifo_read;
 endproperty
 
 cov_non_consecutive_writes: assert property(prop_non_consecutive_write_) $display($stime,,, "\t\t PASS::non_consecutive_writes condition\n");

@@ -1,5 +1,5 @@
 xrun(64): 23.09-s006: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
-TOOL:	xrun(64)	23.09-s006: Started on Sep 19, 2024 at 17:55:05 EDT
+TOOL:	xrun(64)	23.09-s006: Started on Sep 20, 2024 at 14:23:25 EDT
 irun
 	-define nobugs
 	-rnm_package
@@ -23,8 +23,8 @@ irun
 	fifo_property.sv
 xrun: *W,NCEXDEP: Executable (irun) is deprecated. Use (xrun) instead.
 Recompiling... reason: file './fifo_property.sv' is newer than expected.
-	expected: Thu Sep 19 17:53:00 2024
-	actual:   Thu Sep 19 17:55:03 2024
+	expected: Fri Sep 20 14:21:14 2024
+	actual:   Fri Sep 20 14:23:23 2024
 file: fifo_property.sv
 	module worklib.fifo_property:sv
 		errors: 0, warnings: 0
@@ -43,7 +43,7 @@ file: fifo_property.sv
 xmelab: *W,COVNSO: /home/couf1001/Documents/github/S8APP1LABCADENCE/verif/scripts/coverage.tcl:25 Scoring of "event" is not supported for the set_coverable_operators -all command in the current release. However, it will be supported in a future release. To score "event" in the current release, use "-event_or" with the set_coverable_operators command, along with appropriate options of the set_coverable_statements command.
 	Generating native compiled code:
 		worklib.fifo_property:sv <0x07bd1fff>
-			streams:  60, words: 52358
+			streams:  60, words: 52341
 logic [(fifo_width-1):0] fifomem [0:(fifo_depth-1)];
                                |
 xmelab: *W,COVMDD (./fifo.v,15|31): Toggle coverage for bit, logic, reg, wire, enum and struct multi-dimensional static arrays and vectors is not supported by default. To enable toggle coverage for enum multi-dimensional static arrays specify 'set_toggle_scoring -sv_enum enable_mda' and for other multi-dimensional static arrays, specify 'set_toggle_scoring -sv_mda [<max_bit_base2_exponent>] [-sv_mda_of_struct]' ccf command in the coverage configuration file.
@@ -66,7 +66,7 @@ xmelab: *W,COVMDD (./fifo.v,15|31): Toggle coverage for bit, logic, reg, wire, e
 		Process Clocks:         12       1
 	Writing initial simulation snapshot: worklib.test_fifo:sv
 Loading snapshot worklib.test_fifo:sv .................... Done
-SVSEED set randomly from command line: 67851450
+SVSEED set randomly from command line: 1288811273
 xcelium> source /mnt/opt/cmc/tools/cadence/XCELIUMMAIN23.09.006_lnx86/tools/xcelium/files/xmsimrc
 xcelium> ########################################################################
 xcelium> ## Author  :    Marc-Andre Tetrault
@@ -81,9 +81,9 @@ xcelium>
 xcelium> 
 xcelium> # get the seed. Reference: "SystemVerilog Reference" from Cadence Help tool (cdnshelp)
 xcelium> set RetrievedSeed [set svseed]
-67851450
+1288811273
 xcelium> puts "The SystemVerilog seed is $RetrievedSeed"
-The SystemVerilog seed is 67851450
+The SystemVerilog seed is 1288811273
 xcelium> 
 xcelium> # set severity_pack_assert_off {warning}
 xcelium> # set pack_assert_off {  numeric_std }
@@ -111,49 +111,59 @@ xcelium> run
        125  rst_=1 clk=1 fifo_write=1 fifo_read=0 fifo_full=1 fifo_empty=0 wr_ptr=8 rd_ptr=0 cnt=8
        125		 PASS::fifo_full_when_cnt_8 condition
 
-       135  rst_=1 clk=1 fifo_write=0 fifo_read=0 fifo_full=1 fifo_empty=0 wr_ptr=8 rd_ptr=0 cnt=8
+       135  rst_=1 clk=1 fifo_write=1 fifo_read=0 fifo_full=1 fifo_empty=0 wr_ptr=8 rd_ptr=0 cnt=8
        135		 PASS::fifo_full_write_stable_wrptr condition
 
-       145  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=1 fifo_empty=0 wr_ptr=8 rd_ptr=0 cnt=8
-       155  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=0 wr_ptr=8 rd_ptr=1 cnt=7
-       165  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=0 wr_ptr=8 rd_ptr=2 cnt=6
-       175  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=0 wr_ptr=8 rd_ptr=3 cnt=5
-       185  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=0 wr_ptr=8 rd_ptr=4 cnt=4
-       195  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=0 wr_ptr=8 rd_ptr=5 cnt=3
-       205  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=0 wr_ptr=8 rd_ptr=6 cnt=2
-       215  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=0 wr_ptr=8 rd_ptr=7 cnt=1
-       225  rst_=1 clk=1 fifo_write=0 fifo_read=0 fifo_full=0 fifo_empty=1 wr_ptr=8 rd_ptr=8 cnt=0
-       235  rst_=1 clk=1 fifo_write=1 fifo_read=0 fifo_full=0 fifo_empty=1 wr_ptr=8 rd_ptr=8 cnt=0
-       245  rst_=1 clk=1 fifo_write=1 fifo_read=0 fifo_full=0 fifo_empty=0 wr_ptr=9 rd_ptr=8 cnt=1
-       255  rst_=1 clk=1 fifo_write=1 fifo_read=0 fifo_full=0 fifo_empty=0 wr_ptr=10 rd_ptr=8 cnt=2
-       265  rst_=1 clk=1 fifo_write=1 fifo_read=0 fifo_full=0 fifo_empty=0 wr_ptr=11 rd_ptr=8 cnt=3
-       275  rst_=1 clk=1 fifo_write=1 fifo_read=0 fifo_full=0 fifo_empty=0 wr_ptr=12 rd_ptr=8 cnt=4
-       285  rst_=1 clk=1 fifo_write=1 fifo_read=0 fifo_full=0 fifo_empty=0 wr_ptr=13 rd_ptr=8 cnt=5
-       295  rst_=1 clk=1 fifo_write=1 fifo_read=0 fifo_full=0 fifo_empty=0 wr_ptr=14 rd_ptr=8 cnt=6
-       305  rst_=1 clk=1 fifo_write=1 fifo_read=0 fifo_full=0 fifo_empty=0 wr_ptr=15 rd_ptr=8 cnt=7
-       315  rst_=1 clk=1 fifo_write=1 fifo_read=0 fifo_full=1 fifo_empty=0 wr_ptr=0 rd_ptr=8 cnt=8
-       325  rst_=1 clk=1 fifo_write=0 fifo_read=0 fifo_full=1 fifo_empty=0 wr_ptr=0 rd_ptr=8 cnt=8
-       325  		 PASS::non_consecutive_writes condition
+       145  rst_=1 clk=1 fifo_write=1 fifo_read=0 fifo_full=1 fifo_empty=0 wr_ptr=8 rd_ptr=0 cnt=8
+       155  rst_=1 clk=1 fifo_write=1 fifo_read=0 fifo_full=1 fifo_empty=0 wr_ptr=8 rd_ptr=0 cnt=8
+       165  rst_=1 clk=1 fifo_write=0 fifo_read=0 fifo_full=1 fifo_empty=0 wr_ptr=8 rd_ptr=0 cnt=8
+       175  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=1 fifo_empty=0 wr_ptr=8 rd_ptr=0 cnt=8
+       175  		 PASS::non_consecutive_writes condition
 
-       335  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=1 fifo_empty=0 wr_ptr=0 rd_ptr=8 cnt=8
-       345  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=0 wr_ptr=0 rd_ptr=9 cnt=7
-       355  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=0 wr_ptr=0 rd_ptr=10 cnt=6
-       365  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=0 wr_ptr=0 rd_ptr=11 cnt=5
-       375  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=0 wr_ptr=0 rd_ptr=12 cnt=4
-       385  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=0 wr_ptr=0 rd_ptr=13 cnt=3
-       395  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=0 wr_ptr=0 rd_ptr=14 cnt=2
-       405  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=0 wr_ptr=0 rd_ptr=15 cnt=1
-       415  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=1 wr_ptr=0 rd_ptr=0 cnt=0
-       425  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=1 wr_ptr=0 rd_ptr=0 cnt=0
-       425		 PASS::fifo_empty_read_stable_rdptr condition
+       185  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=0 wr_ptr=8 rd_ptr=1 cnt=7
+       195  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=0 wr_ptr=8 rd_ptr=2 cnt=6
+       205  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=0 wr_ptr=8 rd_ptr=3 cnt=5
+       215  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=0 wr_ptr=8 rd_ptr=4 cnt=4
+       225  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=0 wr_ptr=8 rd_ptr=5 cnt=3
+       235  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=0 wr_ptr=8 rd_ptr=6 cnt=2
+       245  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=0 wr_ptr=8 rd_ptr=7 cnt=1
+       255  rst_=1 clk=1 fifo_write=0 fifo_read=0 fifo_full=0 fifo_empty=1 wr_ptr=8 rd_ptr=8 cnt=0
+       265  rst_=0 clk=1 fifo_write=0 fifo_read=0 fifo_full=0 fifo_empty=1 wr_ptr=0 rd_ptr=0 cnt=0
+       275  rst_=0 clk=1 fifo_write=0 fifo_read=0 fifo_full=0 fifo_empty=1 wr_ptr=0 rd_ptr=0 cnt=0
+       285  rst_=1 clk=1 fifo_write=0 fifo_read=0 fifo_full=0 fifo_empty=1 wr_ptr=0 rd_ptr=0 cnt=0
+       295  rst_=0 clk=1 fifo_write=0 fifo_read=0 fifo_full=0 fifo_empty=1 wr_ptr=0 rd_ptr=0 cnt=0
+       305  rst_=0 clk=1 fifo_write=0 fifo_read=0 fifo_full=0 fifo_empty=1 wr_ptr=0 rd_ptr=0 cnt=0
+       315  rst_=1 clk=1 fifo_write=0 fifo_read=0 fifo_full=0 fifo_empty=1 wr_ptr=0 rd_ptr=0 cnt=0
+       325  rst_=1 clk=1 fifo_write=1 fifo_read=0 fifo_full=0 fifo_empty=1 wr_ptr=0 rd_ptr=0 cnt=0
+       335  rst_=1 clk=1 fifo_write=1 fifo_read=0 fifo_full=0 fifo_empty=0 wr_ptr=1 rd_ptr=0 cnt=1
+       345  rst_=1 clk=1 fifo_write=1 fifo_read=0 fifo_full=0 fifo_empty=0 wr_ptr=2 rd_ptr=0 cnt=2
+       355  rst_=1 clk=1 fifo_write=1 fifo_read=0 fifo_full=0 fifo_empty=0 wr_ptr=3 rd_ptr=0 cnt=3
+       365  rst_=1 clk=1 fifo_write=1 fifo_read=0 fifo_full=0 fifo_empty=0 wr_ptr=4 rd_ptr=0 cnt=4
+       375  rst_=1 clk=1 fifo_write=1 fifo_read=0 fifo_full=0 fifo_empty=0 wr_ptr=5 rd_ptr=0 cnt=5
+       385  rst_=1 clk=1 fifo_write=1 fifo_read=0 fifo_full=0 fifo_empty=0 wr_ptr=6 rd_ptr=0 cnt=6
+       395  rst_=1 clk=1 fifo_write=1 fifo_read=0 fifo_full=0 fifo_empty=0 wr_ptr=7 rd_ptr=0 cnt=7
+       405  rst_=1 clk=1 fifo_write=1 fifo_read=0 fifo_full=1 fifo_empty=0 wr_ptr=8 rd_ptr=0 cnt=8
+       415  rst_=1 clk=1 fifo_write=1 fifo_read=0 fifo_full=1 fifo_empty=0 wr_ptr=8 rd_ptr=0 cnt=8
+       425  rst_=1 clk=1 fifo_write=0 fifo_read=0 fifo_full=1 fifo_empty=0 wr_ptr=8 rd_ptr=0 cnt=8
+       435  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=1 fifo_empty=0 wr_ptr=8 rd_ptr=0 cnt=8
+       445  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=0 wr_ptr=8 rd_ptr=1 cnt=7
+       455  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=0 wr_ptr=8 rd_ptr=2 cnt=6
+       465  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=0 wr_ptr=8 rd_ptr=3 cnt=5
+       475  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=0 wr_ptr=8 rd_ptr=4 cnt=4
+       485  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=0 wr_ptr=8 rd_ptr=5 cnt=3
+       495  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=0 wr_ptr=8 rd_ptr=6 cnt=2
+       505  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=0 wr_ptr=8 rd_ptr=7 cnt=1
+       515  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=1 wr_ptr=8 rd_ptr=8 cnt=0
+       525  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=1 wr_ptr=8 rd_ptr=8 cnt=0
+       525		 PASS::fifo_empty_read_stable_rdptr condition
 
-       435  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=1 wr_ptr=0 rd_ptr=0 cnt=0
-Memory Usage - Current physical: 55.4M, Current virtual: 356.2M
-CPU Usage - 0.0s system + 0.0s user = 0.1s total (18.5% cpu)
-Simulation complete via $finish(2) at time 435 NS + 0
-./test_fifo.sv:26   @(posedge clk); $finish(2);
+       535  rst_=1 clk=1 fifo_write=0 fifo_read=1 fifo_full=0 fifo_empty=1 wr_ptr=8 rd_ptr=8 cnt=0
+Memory Usage - Current physical: 56.2M, Current virtual: 356.2M
+CPU Usage - 0.0s system + 0.0s user = 0.1s total (20.0% cpu)
+Simulation complete via $finish(2) at time 535 NS + 0
+./test_fifo.sv:28   @(posedge clk); $finish(2);
 xcelium> exit
-xmsim: *W,CGDEFN: Default name "test_fifo.fi1.fi1bind.covg_fifo_inst" will be generated for covergroup instance "covg_fifo_inst" as the name of the covergroup instance is not specified explicitly: ./fifo_property.sv, 198.
+xmsim: *W,CGDEFN: Default name "test_fifo.fi1.fi1bind.covg_fifo_inst" will be generated for covergroup instance "covg_fifo_inst" as the name of the covergroup instance is not specified explicitly: ./fifo_property.sv, 199.
 
 coverage setup:
   workdir  :  ./cov_work
@@ -162,6 +172,6 @@ coverage setup:
   testname :  test_fifo
 
 coverage files:
-  model(design data) :  ./cov_work/scope/icc_6bfc2529_473ef447.ucm (reused)
-  data               :  ./cov_work/scope/test_fifo/icc_6bfc2529_473ef447.ucd
-TOOL:	xrun(64)	23.09-s006: Exiting on Sep 19, 2024 at 17:55:06 EDT  (total: 00:00:01)
+  model(design data) :  ./cov_work/scope/icc_6bfc2529_5febd958.ucm
+  data               :  ./cov_work/scope/test_fifo/icc_6bfc2529_5febd958.ucd
+TOOL:	xrun(64)	23.09-s006: Exiting on Sep 20, 2024 at 14:23:26 EDT  (total: 00:00:01)
